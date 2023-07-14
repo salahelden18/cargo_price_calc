@@ -142,6 +142,7 @@ router.post(
   "/",
   checkBodyController.checkBody,
   checkCountryCodeController.checkCountryCode,
+  calcPriceController.getCurrencies,
   calcPriceController.calcPrice,
   cargoCalcController.saveInDB
 );
