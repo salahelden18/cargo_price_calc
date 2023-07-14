@@ -25,6 +25,9 @@ const options = {
     },
     servers: [
       {
+        url: "https://cargo-calc.onrender.com",
+      },
+      {
         url: "http://localhost:3000",
       },
     ],
