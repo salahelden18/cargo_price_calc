@@ -43,6 +43,7 @@ const sendErrorProd = (err, res) => {
 //global Error Handling
 module.exports = (err, req, res, next) => {
   console.log("Came Here To Error Handlin");
+  console.log(err);
   err.statusCode = err.statusCode || 500;
   err.status = res.__(err.status) || "error";
 
