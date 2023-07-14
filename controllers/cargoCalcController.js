@@ -60,6 +60,7 @@ exports.saveInDB = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: res.__("success"),
+    currency: req.body.currency,
     lowestPrice: req.lowestPriceShippingOption,
     lowestShipmentDays: req.lowestShipmentDaysOption ?? null,
     data: req.prices ?? null,

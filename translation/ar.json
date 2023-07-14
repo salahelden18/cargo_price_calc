@@ -1,5 +1,5 @@
 {
-  "requiredFieldsError": "نوع التجارة ورمز البلدو رقم التتبع وخصائص الحزمة مطلوبة",
+  "requiredFieldsError": "نوع التجارة ورمز البلد وخصائص الحزمة مطلوبة",
   "validCurrencyError": "الرجاء إدخال عملة صالحة",
   "currencySupportError": "يتم دعم USD, EUR, TRY, GBP فقط",
   "packageError": "الرجاء إدخال حزمتك ليتم احتسابها",
