@@ -24,14 +24,6 @@ const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-process.on("SIGTERM", () => {
-  console.log("Received SIGTERM signal. Closing server gracefully...");
-  server.close(() => {
-    console.log("Server closed. Exiting process.");
-    process.exit(0);
-  });
-});
-
 process.on("unhandledRejection", (err) => {
   console.log("UNCAUGHT EXCEPTION");
   console.log(err.name, err.message);
