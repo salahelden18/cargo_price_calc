@@ -8,7 +8,8 @@
   "typeError": "Lütfen geçerli bir tür girin, belgeler ve paketler geçerlidir",
   "countryCodeError": "Girilen ülke kodu mevcut değil",
   "generalError": "Bir hata oluştu",
+  "typeRequiredError": "type gereklidir",
+
   "success": "başarlı",
-  "fail": "başarsız",
-  "error": "error"
+  "fail": "başarsız"
 }

@@ -1,7 +1,7 @@
 const express = require("express");
 const cargoCalcController = require("../controllers/cargoCalcController");
-const checkBodyController = require("../controllers/checkBodyController");
-const checkCountryCodeController = require("../controllers/checkCountryCodeController");
+const checkBodyMiddleware = require("../middlewares/checkBodyMiddleware");
+const checkCountryCodeMiddleware = require("../middlewares/checkCountryCodeMiddleware");
 const calcPriceController = require("../controllers/calcPriceController");
 const router = express.Router();
 
@@ -140,8 +140,8 @@ const router = express.Router();
 
 router.post(
   "/",
-  checkBodyController.checkBody,
-  checkCountryCodeController.checkCountryCode,
+  checkBodyMiddleware,
+  checkCountryCodeMiddleware,
   calcPriceController.getCurrencies,
   calcPriceController.calcPrice,
   cargoCalcController.saveInDB

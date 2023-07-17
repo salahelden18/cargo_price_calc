@@ -5,6 +5,12 @@ const path = require("path");
 
 const globalErrorHandler = require("./controllers/errorController");
 const AppError = require("./utils/appError");
+const currencySchedule = require("./utils/currencySchedule");
+
+//security packages
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
 
 // importing the routes
 const cargoCalcRoute = require("./routes/cargoCalcRoute");
@@ -39,6 +45,9 @@ const specs = swaggerJsDoc(options);
 
 const app = express();
 
+// start schedule
+currencySchedule();
+
 app.use(cors());
 
 app.options("*", cors());
@@ -60,7 +69,20 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-app.use(express.json());
+app.use(helmet());
+
+// Limit Requests from same API
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000, // 100 request per hour
+  message: "Too many requests from this IP, Please try again in an hour",
+});
+
+app.use("/api", limiter); // will affect all the routes that start with /api
+
+app.use(express.json({ limit: "10kb" }));
+
+app.use(mongoSanitize());
 
 app.use("/api/v1/cargo", cargoCalcRoute);
 

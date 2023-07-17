@@ -1,10 +1,8 @@
 const axios = require("axios");
 const AppError = require("../utils/appError");
-const catchAsync = require("../utils/catch_async");
 
-exports.checkCountryCode = catchAsync(async (req, res, next) => {
+const checkCountryCode = async (req, res, next) => {
   const { countryCode } = req.body;
-  console.log(countryCode);
   try {
     const response = await axios.post(
       `${process.env.URL}isAvailableForCountry`,
@@ -28,6 +26,13 @@ exports.checkCountryCode = catchAsync(async (req, res, next) => {
     req.isAvailable = isAvailable;
     next();
   } catch (e) {
-    throw new AppError(res.__("generalError"), e.status);
+    const errorDetails = e.response?.data?.detail;
+    const errorStatus = e.response?.data?.status;
+    throw new AppError(
+      errorDetails ?? res.__("generalError"),
+      errorStatus ?? e.status
+    );
   }
-});
+};
+
+module.exports = checkCountryCode;

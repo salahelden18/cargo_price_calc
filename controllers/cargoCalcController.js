@@ -1,9 +1,6 @@
 const Calc = require("../models/calcModel");
 const catchAsync = require("../utils/catch_async");
 const APIFeatures = require("../utils/api-features");
-const PriceConv = require("../models/priceModel");
-const getCurrencies = require("../utils/get_currencies");
-const formatPrice = require("../utils/formatPrice");
 
 exports.saveInDB = catchAsync(async (req, res, next) => {
   await Calc.create({
@@ -20,11 +17,6 @@ exports.saveInDB = catchAsync(async (req, res, next) => {
     data: req.prices ?? null,
   });
 });
-
-// function parsePrice(price) {
-//   const roundedPrice = Math.round(price * 100) / 100;
-//   return roundedPrice.toFixed(2);
-// }
 
 // get the info from the db
 exports.getDbInfo = catchAsync(async (req, res, next) => {

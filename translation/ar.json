@@ -8,6 +8,7 @@
   "typeError": "يرجي ادخال نوع صحيح وثائق و طرود صالحين",
   "countryCodeError": "رمز البلد المُدخل غير متوفر",
   "generalError": "حدث خطأ ما",
+  "typeRequiredError": "يجب ادخال النوع",
 
   "success": "نجح",
   "fail": "فشل"

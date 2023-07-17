@@ -17,6 +17,14 @@ mongoose
     console.log(e);
   });
 
+process.on("SIGTERM", () => {
+  console.log("Received SIGTERM signal. Closing server gracefully...");
+  server.close(() => {
+    console.log("Server closed. Exiting process.");
+    process.exit(0);
+  });
+});
+
 // start listening to the requests
 const port = process.env.PORT || 3000;
 

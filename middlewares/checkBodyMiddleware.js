@@ -1,7 +1,7 @@
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catch_async");
 
-exports.checkBody = catchAsync(async (req, res, next) => {
+const checkBody = catchAsync(async (req, res, next) => {
   req.body.currency = req.body?.currency?.toUpperCase() || "EUR";
   req.body.incoterm = req.body?.incoterm || 1;
   req.body.countryCode = req.body?.countryCode?.toUpperCase();
@@ -68,3 +68,5 @@ exports.checkBody = catchAsync(async (req, res, next) => {
 
   next();
 });
+
+module.exports = checkBody;
