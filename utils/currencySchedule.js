@@ -3,7 +3,7 @@ const getCurrencies = require("../helpers/getCurrencies");
 const PriceConv = require("../models/priceModel");
 
 const startSchedule = () => {
-  schedule.scheduleJob("*/2 * * * *", async function () {
+  schedule.scheduleJob("0 */2 * * *", async function () {
     try {
       const currencies = await getCurrencies();
 
