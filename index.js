@@ -17,19 +17,19 @@ mongoose
     console.log(e);
   });
 
+// start listening to the requests
+const port = process.env.PORT || 3000;
+
+const server = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
 process.on("SIGTERM", () => {
   console.log("Received SIGTERM signal. Closing server gracefully...");
   server.close(() => {
     console.log("Server closed. Exiting process.");
     process.exit(0);
   });
-});
-
-// start listening to the requests
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
 });
 
 process.on("unhandledRejection", (err) => {

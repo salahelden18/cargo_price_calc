@@ -11,6 +11,7 @@ const currencySchedule = require("./utils/currencySchedule");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
+const xssMiddleware = require("./middlewares/xss-middleware");
 
 // importing the routes
 const cargoCalcRoute = require("./routes/cargoCalcRoute");
@@ -83,6 +84,8 @@ app.use("/api", limiter); // will affect all the routes that start with /api
 app.use(express.json({ limit: "10kb" }));
 
 app.use(mongoSanitize());
+
+app.use(xssMiddleware);
 
 app.use((req, res, next) => {
   res.setHeader(
