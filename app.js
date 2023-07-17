@@ -71,6 +71,13 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(helmet());
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy', 'default-src 'self'; script-src 'self' http://localhost:3000; img-src 'self' data:;"
+  );
+  next();
+});
+
 // Limit Requests from same API
 const limiter = rateLimit({
   max: 100,
